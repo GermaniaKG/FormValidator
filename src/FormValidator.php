@@ -1,7 +1,7 @@
 <?php
 namespace Germania\FormValidator;
 
-class FormValidator
+class FormValidator implements FormValidatorInterface
 {
 
     const SUBMITTED = 1;
@@ -71,8 +71,7 @@ class FormValidator
 
 
     /**
-     * Checks if the form has been sent.
-     *
+     * @implements FormValidatorInterface
      * @return boolean
      */
     public function isSubmitted()
@@ -82,8 +81,7 @@ class FormValidator
 
 
     /**
-     * Returns TRUE if the form values are complete and valid.
-     *
+     * @implements FormValidatorInterface
      * @return boolean
      */
     public function isValid()

@@ -2,6 +2,10 @@
 
 **Callable for validating and filtering user inputs with convenient evaluation API.**
 
+[![Build Status](https://travis-ci.org/GermaniaKG/FormValidator.svg?branch=master)](https://travis-ci.org/GermaniaKG/FormValidator)
+[![Code Coverage](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/?branch=master)
+
 
 ##Installation
 

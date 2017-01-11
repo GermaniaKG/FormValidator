@@ -47,6 +47,10 @@ echo $formtest->isValid();
 ```
 
 
+##Issues on HHVM
+
+- On Travis CI, the PhpUnit **FormValidatorTest** [fails on HHVM](https://travis-ci.org/GermaniaKG/FormValidator/jobs/190888985). Maybe this has something to do with [this HHVM filter_var issue](http://stackoverflow.com/questions/16756576/is-there-an-alternative-to-the-filter-var-function-in-php-when-using-hhvm) described on StackOverflow. For now, HHVM is disabled in `.travis.yml`. The FormValidator does meanwhile work on PHP 5.6+
+
 ##Development and Testing
 
 Develop using `develop` branch, using [Git Flow](https://github.com/nvie/gitflow).   

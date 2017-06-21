@@ -7,18 +7,19 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/?branch=master)
 
 
-##Installation
+## Installation
 
 ```bash
 $ composer require germania-kg/formvalidator
 ```
 
 
-##Usage
+## Form validation
 
 ```php
 <?php
 use Germania\FormValidator\FormValidator;
+use Germania\FormValidator\InputContainer;
 
 // Setup
 $required = [
@@ -34,24 +35,69 @@ $optional = [
 
 $formtest = new FormValidator( $required, $optional );
 
-// Uses PHP's filter_var_array internally
+// Invoking uses PHP's filter_var_array internally.
+// Return value is InputContainer instance:
 $filtered_input = $formtest( $_POST );
 
-// At least one required field valid
+// At least one required field valid?
 echo $formtest->isSubmitted();
 
-// All required fields valid
+// All required fields valid?
 echo $formtest->isValid();
 
 
 ```
 
+## Filtered Result: InputContainer
 
-##Issues on HHVM
+The *InputContainer* is a 
+[PSR-11 Container](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-11-container.md) and
+also implements [ArrayAccess.](http://php.net/manual/de/class.arrayaccess.php)
+
+
+### ArrayAccess
+
+```php
+<?php
+// Invocation returns InputContainer instance
+$filtered_input = $formtest( $_POST );
+
+// ArrayAccess: 
+// If field not set, return values are null.
+echo $filtered_input['foo'];
+echo $filtered_input->offsetGet('foo');
+```
+
+### ContainerInterface
+
+```php
+<?php
+use Germania\FormValidator\NotFoundException;
+use Psr\Container\NotFoundExceptionInterface;
+
+// Invocation returns InputContainer instance
+$filtered_input = $formtest( $_POST );
+
+try {
+	echo $filtered_input->has('foo');
+	echo $filtered_input->get('foo');
+}
+catch (NotFoundException $e) {
+	// not found
+}
+catch (NotFoundExceptionInterface $e) {
+	// not found
+}
+```
+
+
+
+
+## Issues on HHVM
 
 - On Travis CI, the PhpUnit **FormValidatorTest** [fails on HHVM](https://travis-ci.org/GermaniaKG/FormValidator/jobs/190888985). Maybe this has something to do with [this HHVM filter_var issue](http://stackoverflow.com/questions/16756576/is-there-an-alternative-to-the-filter-var-function-in-php-when-using-hhvm) described on StackOverflow. For now, HHVM is disabled in `.travis.yml`. The FormValidator does meanwhile work on PHP 5.6+
 
-##Development and Testing
+## Development and Testing
 
 Develop using `develop` branch, using [Git Flow](https://github.com/nvie/gitflow).   
 

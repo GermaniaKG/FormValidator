@@ -65,7 +65,7 @@ class FormValidator implements FormValidatorInterface
         $this->setFlag(static::VALID, $valid);
 
         // Return filtered data
-        return $filtered_input;
+        return new InputContainer($filtered_input);
     }
 
 

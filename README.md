@@ -1,4 +1,4 @@
-#Germania KG · FormValidator
+# Germania KG · FormValidator
 
 **Callable for validating and filtering user inputs with convenient evaluation API.**
 

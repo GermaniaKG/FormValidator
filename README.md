@@ -102,13 +102,20 @@ Also see [full issues list.][i0]
 [i0]: https://github.com/GermaniaKG/FormValidator/issues 
 [i1]: https://github.com/GermaniaKG/FormValidator/issues/1
 
-## Development and Testing
-
-Develop using `develop` branch, using [Git Flow](https://github.com/nvie/gitflow).   
+## Development
 
 ```bash
 $ git clone git@github.com:GermaniaKG/FormValidator.git formvalidator
 $ cd formvalidator
-$ cp phpunit.xml.dist phpunit.xml
-$ phpunit
+$ composer install
 ```
+
+## Unit tests
+
+Either copy `phpunit.xml.dist` to `phpunit.xml` and adapt to your needs, or leave as is. 
+Run [PhpUnit](https://phpunit.de/) like this:
+
+```bash
+$ vendor/bin/phpunit
+```
+

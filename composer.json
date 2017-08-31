@@ -1,6 +1,8 @@
 {
 	"name":        "germania-kg/formvalidator",
 
+	"description":  "Callable for validating and filtering user inputs with convenient evaluation API.",
+
 	"type":        "library",
 	"license":     "MIT",
 

@@ -106,5 +106,35 @@ class FormValidator implements FormValidatorInterface
         }
     }
 
+    public function addRequired( $field, $flag)
+    {
+        $this->required_fields[ $field ] = $flag;
+        $this->removeOptional( $field );
+        return $this;
+    }
+
+    public function removeRequired( $field )
+    {
+        if (array_key_exists($field, $this->required_fields)):
+            unset($this->required_fields[ $field ]);
+        endif;
+        return $this;
+    }
+
+    public function addOptional( $field, $flag)
+    {
+        $this->optional_fields[ $field ] = $flag;
+        $this->removeRequired( $field );
+        return $this;
+    }
+
+
+    public function removeOptional( $field )
+    {
+        if (array_key_exists($field, $this->optional_fields)):
+            unset($this->optional_fields[ $field ]);
+        endif;
+        return $this;
+    }
 
 }

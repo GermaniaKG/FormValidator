@@ -26,6 +26,25 @@ class FormValidatorTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    /**
+     * @dataProvider provideData
+     */
+    public function testAddingAndRemovingFields( $required, $optional, $raw_input, $expected_submitted, $expected_valid )
+    {
+        // Setup
+        $sut = new FormValidator( $required, $optional );
+
+        $field = 'foo';
+
+        $sut->addRequired($field, FILTER_SANITIZE_STRING);
+        $this->assertTrue( array_key_exists($field, $sut->required_fields));
+        $this->assertFalse( array_key_exists($field, $sut->optional_fields));
+
+        $sut->addOptional($field, FILTER_SANITIZE_STRING);
+        $this->assertTrue( array_key_exists($field, $sut->optional_fields));
+        $this->assertFalse( array_key_exists($field, $sut->required_fields));
+    }
+
 
 
 

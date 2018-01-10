@@ -48,6 +48,31 @@ echo $formtest->isValid();
 
 ```
 
+## Adding fields
+
+After instantiation, you can add required or optional fields. An existing *optional* field is no longer optional if added using `addRequired`, the same goes with *required* fields, if added using `addOptional `.
+
+```php
+$formtest = new FormValidator( $required, $optional );
+
+$formtest->addRequired('additional_info', FILTER_SANITIZE_STRING);
+$formtest->addOptional('additional_info', FILTER_SANITIZE_STRING);
+```
+
+
+## Removing fields
+
+After instantiation, you can remove required or optional fields.
+
+```php
+$formtest = new FormValidator( $required, $optional );
+
+$formtest->removeRequired('user_email');
+$formtest->removeOptional('family_name');
+```
+
+
+
 ## Filtered Result: InputContainer
 
 The *InputContainer* is a 

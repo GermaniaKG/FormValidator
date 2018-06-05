@@ -2,9 +2,10 @@
 namespace tests;
 
 use Germania\FormValidator\FormValidator;
+use Germania\FormValidator\InputContainer;
 use Psr\Container\ContainerInterface;
 
-class FormValidatorTest extends \PHPUnit_Framework_TestCase
+class FormValidatorTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -17,6 +18,9 @@ class FormValidatorTest extends \PHPUnit_Framework_TestCase
 
         // Uses PHP's filter_var_array internally
         $filtered_input = $sut( $raw_input );
+        $this->assertInstanceOf( \ArrayAccess::class, $filtered_input );
+        $this->assertInstanceOf( ContainerInterface::class, $filtered_input );
+        $this->assertInstanceOf( InputContainer::class, $filtered_input );
 
         // At least one required field valid?
         $this->assertSame( $sut->isSubmitted(), $expected_submitted );
@@ -43,6 +47,30 @@ class FormValidatorTest extends \PHPUnit_Framework_TestCase
         $sut->addOptional($field, FILTER_SANITIZE_STRING);
         $this->assertTrue( array_key_exists($field, $sut->optional_fields));
         $this->assertFalse( array_key_exists($field, $sut->required_fields));
+    }
+
+
+    /**
+     * @dataProvider provideData
+     */
+    public function testCustomReturnContainers( $required, $optional, $raw_input, $expected_submitted, $expected_valid )
+    {
+        $factory = function( $filtered_input ) {
+            return new \ArrayObject( $filtered_input );
+        };
+
+        // Setup 1: factory with Ctor
+        $sut = new FormValidator( $required, $optional, $factory );
+        $container1 = $sut( $raw_input );
+        $this->assertInstanceOf( \ArrayObject::class, $container1 );
+
+        // Setup 2: factory per Call
+        $sut = new FormValidator( $required, $optional);
+        $container2 = $sut( $raw_input );
+        $this->assertInstanceOf( InputContainer::class, $container2 );
+
+        $container3 = $sut( $raw_input, $factory );
+        $this->assertInstanceOf( \ArrayObject::class, $container3 );
     }
 
 

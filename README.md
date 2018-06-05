@@ -75,9 +75,7 @@ $formtest->removeOptional('family_name');
 
 ## Filtered Result: InputContainer
 
-The *InputContainer* is a 
-[PSR-11 Container](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-11-container.md) and
-also implements [ArrayAccess.](http://php.net/manual/de/class.arrayaccess.php)
+The *InputContainer* is a [PSR-11 Container](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-11-container.md) and also implements [ArrayAccess.](http://php.net/manual/de/class.arrayaccess.php)
 
 
 ### ArrayAccess
@@ -117,12 +115,46 @@ catch (NotFoundExceptionInterface $e) {
 
 
 
+## Filtered Result: Custom InputContainer
+
+The *FormValidator* class optionally accepts a Callable that takes the filtered input. It should return something useful (such as the default *InputContainer*).
+
+**Variant A:** Using the constructor
+
+```php
+// Setup the factory
+$factory = function( $filtered_input ) {
+    return new \ArrayObject( $filtered_input );
+};
+
+// Pass to the ctor
+$formtest = new FormValidator( $required, $optional, $factory );
+
+// Returns an ArrayObject
+$filtered_input = $formtest( $_POST );
+```
+
+**Variant B:** Use per call
+
+```php
+// Setup as usual:
+$formtest = new FormValidator( $required, $optional );
+$filtered_input = $formtest( $_POST );
+
+// While the above returns the usual InputContainer,
+// this will return an ArrayObject:
+$filtered_input = $formtest( $_POST, function( $filtered_input ) {
+    return new \ArrayObject( $filtered_input );
+});
+```
+
+## 
 
 ## Issues
 
 See [issues list.][i0]
 
-[i0]: https://github.com/GermaniaKG/FormValidator/issues 
+[i0]: https://github.com/GermaniaKG/FormValidator/issues
 
 ## Development
 

@@ -6,7 +6,7 @@ use Germania\FormValidator\NotFoundException;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class InputContainerTest extends \PHPUnit_Framework_TestCase
+class InputContainerTest extends \PHPUnit\Framework\TestCase
 {
     public function testInstantiation()
     {
@@ -42,6 +42,17 @@ class InputContainerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($sut->has("foo"));
         $this->assertFalse($sut->offsetExists("foo"));
+    }
+
+
+    public function testDefaultValues()
+    {
+        $sut = new InputContainer( array('john' => 'doe'), array('foo' => 'bar'));
+
+        $this->assertEquals( $sut->offsetGet('foo'), "bar" );
+        $this->assertEquals( $sut->offsetGet('john'), "doe" );
+        $this->assertTrue($sut->has("foo"));
+        $this->assertTrue($sut->offsetExists("foo"));
     }
 
 

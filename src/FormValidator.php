@@ -48,7 +48,7 @@ class FormValidator implements FormValidatorInterface
      * @param array  $raw_user_input Ususally `$_POST`
      * @return array The filtered user input
      */
-    public function __invoke( $raw_user_input )
+    public function __invoke( $raw_user_input, callable $input_container_factory = null  )
     {
         // Reset status
         $this->setFlag(static::SUBMITTED, false);
@@ -73,7 +73,7 @@ class FormValidator implements FormValidatorInterface
         $this->setFlag(static::VALID, $valid);
 
         // Return filtered data
-        $factory = $this->input_container_factory;
+        $factory = $input_container_factory ?: $this->input_container_factory;
         return $factory($filtered_input);
     }
 

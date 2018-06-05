@@ -12,11 +12,12 @@ class InputContainer implements ContainerInterface, \ArrayAccess
     public $data;
 
     /**
-     * @param array $data Optional array
+     * @param array $data     Input values (optional)
+     * @param array $defaults Default values (optional)
      */
-    public function __construct( array $data = array() )
+    public function __construct( array $data = array(), array $defaults = array() )
     {
-        $this->data = $data;
+        $this->data = array_merge($defaults, $data);
     }
 
 

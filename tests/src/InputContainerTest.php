@@ -45,6 +45,17 @@ class InputContainerTest extends \PHPUnit\Framework\TestCase
     }
 
 
+    public function testDefaultValues()
+    {
+        $sut = new InputContainer( array('john' => 'doe'), array('foo' => 'bar'));
+
+        $this->assertEquals( $sut->offsetGet('foo'), "bar" );
+        $this->assertEquals( $sut->offsetGet('john'), "doe" );
+        $this->assertTrue($sut->has("foo"));
+        $this->assertTrue($sut->offsetExists("foo"));
+    }
+
+
     public function testExistingValues()
     {
         $key = "foo";

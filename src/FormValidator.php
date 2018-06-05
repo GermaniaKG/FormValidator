@@ -24,15 +24,23 @@ class FormValidator implements FormValidatorInterface
      */
     public $optional_fields = array();
 
+    /**
+     * @var callable
+     */
+    public $input_container_factory = array();
+
 
     /**
      * @param array $required Array with field and filter definitions
      * @param array $optional Array with field and filter definitions, default: empty array
+     * @param array $input_container_factory Optional callable that takes the filtered input and returns an InputContainer
      */
-    public function __construct(array $required, array $optional = array() )
+    public function __construct(array $required, array $optional = array(), callable $input_container_factory = null )
     {
         $this->required_fields = $required;
         $this->optional_fields = $optional;
+        $this->input_container_factory = $input_container_factory
+                                       ?: function( $filtered_input ) { return new InputContainer($filtered_input); };
     }
 
 
@@ -65,7 +73,8 @@ class FormValidator implements FormValidatorInterface
         $this->setFlag(static::VALID, $valid);
 
         // Return filtered data
-        return new InputContainer($filtered_input);
+        $factory = $this->input_container_factory;
+        return $factory($filtered_input);
     }
 
 

@@ -4,7 +4,7 @@ namespace tests;
 use Germania\FormValidator\FormValidator;
 use Psr\Container\ContainerInterface;
 
-class FormValidatorTest extends \PHPUnit_Framework_TestCase
+class FormValidatorTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

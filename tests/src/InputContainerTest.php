@@ -6,7 +6,7 @@ use Germania\FormValidator\NotFoundException;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-class InputContainerTest extends \PHPUnit_Framework_TestCase
+class InputContainerTest extends \PHPUnit\Framework\TestCase
 {
     public function testInstantiation()
     {

@@ -2,12 +2,16 @@
 
 **Callable for validating and filtering user inputs with convenient evaluation API.**
 
-[![Build Status](https://travis-ci.org/GermaniaKG/FormValidator.svg?branch=master)](https://travis-ci.org/GermaniaKG/FormValidator)
-[![Code Coverage](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/?branch=master)
+
+[![Packagist](https://img.shields.io/packagist/v/germania-kg/formvalidator.svg?style=flat)](https://packagist.org/packages/germania-kg/formvalidator)
+[![PHP version](https://img.shields.io/packagist/php-v/germania-kg/formvalidator.svg)](https://packagist.org/packages/germania-kg/formvalidator)
+[![Build Status](https://img.shields.io/travis/GermaniaKG/FormValidator.svg?label=Travis%20CI)](https://travis-ci.org/GermaniaKG/FormValidator)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/badges/build.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/FormValidator/build-status/master)
 
-## Installation
+
+## Installation with Composer
 
 ```bash
 $ composer require germania-kg/formvalidator
@@ -159,17 +163,19 @@ See [issues list.][i0]
 ## Development
 
 ```bash
-$ git clone git@github.com:GermaniaKG/FormValidator.git formvalidator
-$ cd formvalidator
+$ git clone https://github.com/GermaniaKG/FormValidator.git
+$ cd FormValidator
 $ composer install
 ```
 
 ## Unit tests
 
-Either copy `phpunit.xml.dist` to `phpunit.xml` and adapt to your needs, or leave as is. 
-Run [PhpUnit](https://phpunit.de/) like this:
+Either copy `phpunit.xml.dist` to `phpunit.xml` and adapt to your needs, or leave as is. Run [PhpUnit](https://phpunit.de/) test or composer scripts like this:
 
 ```bash
+$ composer test
+# or
 $ vendor/bin/phpunit
 ```
+
 

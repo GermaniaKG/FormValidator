@@ -95,6 +95,16 @@ echo $filtered_input['foo'];
 echo $filtered_input->offsetGet('foo');
 ```
 
+#### Simple Array access
+
+```php
+<?php
+// Invocation returns InputContainer instance
+$filtered_input = $formtest( $_POST );
+
+$input_array = $filtered_input->getArrayCopy();
+```
+
 ### ContainerInterface
 
 ```php

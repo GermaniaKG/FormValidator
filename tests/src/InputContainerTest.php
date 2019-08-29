@@ -74,5 +74,7 @@ class InputContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals( $r1, $r2 );
         $this->assertEquals( $r2, $r3 );
 
+        $ca = $sut->getArrayCopy();
+        $this->assertEquals( $r1, $ca[$key] );
     }
 }

@@ -41,6 +41,13 @@ class InputContainer implements ContainerInterface, \ArrayAccess
     }
 
 
+    /**
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return $this->data;        
+    }
 
 
     /**

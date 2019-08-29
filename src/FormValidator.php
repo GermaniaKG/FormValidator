@@ -46,7 +46,7 @@ class FormValidator implements FormValidatorInterface
 
     /**
      * @param array  $raw_user_input Ususally `$_POST`
-     * @return array The filtered user input
+     * @return InputContainer
      */
     public function __invoke( $raw_user_input, callable $input_container_factory = null  )
     {

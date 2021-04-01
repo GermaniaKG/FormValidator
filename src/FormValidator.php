@@ -1,6 +1,8 @@
 <?php
 namespace Germania\FormValidator;
 
+use Psr\Http\Message\ServerRequestInterface;
+
 class FormValidator implements FormValidatorInterface
 {
 
@@ -50,6 +52,10 @@ class FormValidator implements FormValidatorInterface
      */
     public function __invoke( $raw_user_input, callable $input_container_factory = null  )
     {
+        if ($raw_user_input instanceOf ServerRequestInterface) {
+            $raw_user_input = $raw_user_input->getParsedBody() ?: array();
+        }
+
         // Reset status
         $this->setFlag(static::SUBMITTED, false);
         $this->setFlag(static::VALID, false);

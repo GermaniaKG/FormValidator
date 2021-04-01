@@ -99,15 +99,17 @@ class FormValidatorTest extends \PHPUnit\Framework\TestCase
             "first_name"      =>   "John"
         ];
 
-        array_push($paramlist, [ $required, $optional, $raw_input, true, true ]);
+        $paramlist['Submitted and valid'] = [ $required, $optional, $raw_input, true, true ];
 
         // Tweak: E-Mail malformed
         $raw_input['user_email'] = "something_weird";
-        array_push($paramlist, [ $required, $optional, $raw_input, true, false ]);
+        $paramlist['Submitted and invalid'] = [ $required, $optional, $raw_input, true, false ];
+
 
         // Tweak: Empty array (like no user input at all)
         $raw_input = array();
-        array_push($paramlist, [ $required, $optional, $raw_input, false, false ]);
+        $paramlist['Not submitted'] = [ $required, $optional, $raw_input, false, false ];
+
 
         return $paramlist;
     }

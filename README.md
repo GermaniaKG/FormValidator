@@ -17,8 +17,9 @@
 $ composer require germania-kg/formvalidator
 ```
 
-
 ## Form validation
+
+The validation is done by invoking the object. The `__invoke`  method accepts both *Arrays* and `Psr\Http\Message\ServerRequestInterface` instances.
 
 ```php
 <?php
@@ -40,8 +41,11 @@ $optional = [
 $formtest = new FormValidator( $required, $optional );
 
 // Invoking uses PHP's filter_var_array internally.
+// Arrays accepted but Psr\Http\Message\ServerRequestInterface
+// will do as well.
 // Return value is InputContainer instance:
 $filtered_input = $formtest( $_POST );
+$filtered_input = $formtest( $request );
 
 // At least one required field valid?
 echo $formtest->isSubmitted();
